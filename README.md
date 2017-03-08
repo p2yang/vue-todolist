@@ -2,6 +2,8 @@
 
 > A Vue.js project
 
+![效果图](./static/todolist.jpeg)
+
 ## Build Setup
 
 ``` bash

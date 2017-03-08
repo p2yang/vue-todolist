@@ -10,8 +10,8 @@
     <ul class="list">
       <li class='item' v-for='(item, index) in lists' @click='edit' v-bind:data-index='index'>
         <i class='icon'></i>
-        <div class='item-input' v-bind:index='index'>{{ item.text }}</div>
-        <input type="text" placeholder='to do ...' v-bind:index='index' @blur='blur' v-on:keyup.enter='submit'>
+        <div class='item-input' v-bind:index='index' v-show="item.text">{{ item.text }}</div>
+        <input type="text" placeholder='to do ...' v-bind:index='index' @blur='blur' v-on:keyup.enter='submit' v-show="!item.text">
         <time class='time'>{{ item.createAt }}</time>
       </li>
     </ul>
@@ -51,6 +51,7 @@ export default {
     },
     blur (e) {
       const input = e.currentTarget
+      if (!input.value) return
       $(input).prev('.item-input').show().html(input.value)
       this.lists[ this.newIndex ][ 'text' ] = input.value
       // $(e.currentTarget).hide().val('')
